@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "title": "Modern Downtown Penthouse",
+    "location": "Downtown",
+    "price": 650000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "area": 1850,
+    "type": "Apartment",
+    "featured": true,
+    "image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
+    "description": "Stunning top-floor penthouse with panoramic skyline views, open concept living, and luxury finishes."
+  },
+  {
+    "id": 2,
+    "title": "Charming Suburban Family Home",
+    "location": "Suburbs",
+    "price": 420000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "area": 2600,
+    "type": "House",
+    "featured": false,
+    "image": "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800&q=80",
+    "description": "Spacious two-story home in a quiet neighborhood, featuring a large landscaped backyard and 2-car garage."
+  },
+  {
+    "id": 3,
+    "title": "Sleek Uptown Studio Apartment",
+    "location": "Uptown",
+    "price": 195000,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "area": 680,
+    "type": "Apartment",
+    "featured": false,
+    "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80",
+    "description": "Minimalist urban studio with floor-to-ceiling windows, smart home integration, and metro station proximity."
+  },
+  {
+    "id": 4,
+    "title": "Luxury Waterfront Villa",
+    "location": "Beachfront",
+    "price": 890000,
+    "bedrooms": 5,
+    "bathrooms": 4,
+    "area": 3800,
+    "type": "Villa",
+    "featured": true,
+    "image": "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80",
+    "description": "Exclusive coastal retreat with private infinity pool, direct beach access, and designer kitchen."
+  },
+  {
+    "id": 5,
+    "title": "Contemporary Urban Condo",
+    "location": "Downtown",
+    "price": 310000,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "area": 1100,
+    "type": "Condo",
+    "featured": false,
+    "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+    "description": "Bright and airy condo located in the arts district, with gym access, rooftop terrace, and concierge."
+  },
+  {
+    "id": 6,
+    "title": "Cozy Uptown Garden Townhouse",
+    "location": "Uptown",
+    "price": 380000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "area": 1600,
+    "type": "Townhouse",
+    "featured": false,
+    "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+    "description": "Elegant brick townhouse with private courtyard patio, hardwood floors, and updated appliances."
+  }
+]

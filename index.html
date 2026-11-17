@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Property Listing</title>
+</head>
+
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <h2>PropertyFinder</h2>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#properties">Properties</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Search & Filter Section -->
+  <section id="filters-section">
+    <h3>Search & Filter Properties</h3>
+
+    <!-- 1. Keyword Search -->
+    <div>
+      <label for="search-input">Keyword:</label>
+      <input type="text" id="search-input" placeholder="Search by title...">
+    </div>
+
+    <!-- 2. Location Dropdown -->
+    <div>
+      <label for="location-filter">Location:</label>
+      <select id="location-filter">
+        <option value="">All Locations</option>
+        <option value="Downtown">Downtown</option>
+        <option value="Suburbs">Suburbs</option>
+        <option value="Uptown">Uptown</option>
+        <option value="Beachfront">Beachfront</option>
+      </select>
+    </div>
+
+    <!-- 3. Bedrooms Dropdown -->
+    <div>
+      <label for="bedroom-filter">Bedrooms:</label>
+      <select id="bedroom-filter">
+        <option value="">All Bedrooms</option>
+        <option value="1">1 Bedroom</option>
+        <option value="2">2 Bedrooms</option>
+        <option value="3">3 Bedrooms</option>
+        <option value="4">4+ Bedrooms</option>
+      </select>
+    </div>
+
+    <!-- 4. Max Price -->
+    <div>
+      <label for="price-filter">Max Price ($):</label>
+      <input type="number" id="price-filter" placeholder="e.g. 500000">
+    </div>
+
+    <!-- 5. Reset Button -->
+    <div>
+      <button type="button" id="reset-btn">Reset Filters</button>
+    </div>
+  </section>
+
+</body>
+
+</html>
