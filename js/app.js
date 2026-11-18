@@ -130,6 +130,7 @@ $(document).ready(function () {
     `;
 
     $('#modal-details').html(detailsHtml);
+    $('#inquiry-form')[0].reset();
     $('#name-error, #email-error, #message-error').text('');
     $('#form-success').hide();
 
