@@ -76,17 +76,21 @@ $(document).ready(function () {
             <img src="${property.image}" class="card-img-top" alt="${property.title}">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">${property.title}${featuredBadge}</h5>
-              <p class="text-muted mb-1">${property.location} &bull; ${property.type}</p>
+              <p class="text-muted mb-1">
+                <i class="bi bi-geo-alt-fill text-danger me-1"></i>${property.location} &bull; ${property.type}
+              </p>
               <p class="fs-5 fw-bold text-primary mb-2">$${property.price.toLocaleString()}</p>
               <p class="card-text small text-secondary">
-                ${property.bedrooms} Beds &bull; ${property.bathrooms} Baths &bull; ${property.area} sq ft
+                <i class="bi bi-door-open me-1"></i>${property.bedrooms} Beds &bull;
+                <i class="bi bi-droplet me-1"></i>${property.bathrooms} Baths &bull;
+                <i class="bi bi-aspect-ratio me-1"></i>${property.area} sq ft
               </p>
               <div class="d-flex gap-2 mt-auto">
                 <button type="button" class="btn btn-outline-primary flex-grow-1 view-details-btn" data-id="${property.id}">
-                  View Details
+                  <i class="bi bi-eye me-1"></i>View Details
                 </button>
                 <button type="button" class="btn ${isFav ? 'btn-danger' : 'btn-outline-danger'} fav-btn" data-id="${property.id}" title="Save to Favorites">
-                  ${isFav ? '&hearts;' : '&#9825;'}
+                  <i class="bi ${isFav ? 'bi-heart-fill' : 'bi-heart'}"></i>
                 </button>
               </div>
             </div>
@@ -235,7 +239,7 @@ $(document).ready(function () {
     const detailsHtml = `
       <img src="${property.image}" alt="${property.title}" class="modal-property-img mb-3">
       <h4>${property.title}</h4>
-      <p class="text-muted mb-2">${property.type} &bull; ${property.location}</p>
+      <p class="text-muted mb-2"><i class="bi bi-geo-alt-fill text-danger me-1"></i>${property.location} &bull; ${property.type}</p>
       <p class="fs-4 fw-bold text-primary mb-2">$${property.price.toLocaleString()}</p>
       <p class="mb-2">
         <strong>Bedrooms:</strong> ${property.bedrooms} |
