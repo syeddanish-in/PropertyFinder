@@ -4,6 +4,7 @@ $(document).ready(function () {
   let currentFiltered = [];
   const PAGE_SIZE = 6;
   let visibleCount = PAGE_SIZE;
+  const FALLBACK_IMAGE = 'https://placehold.co/800x500?text=Property+Image+Unavailable';
 
   // Load saved favorite property IDs from localStorage
   let favorites = JSON.parse(localStorage.getItem('favoriteProperties')) || [];
@@ -73,7 +74,7 @@ $(document).ready(function () {
       const cardHtml = `
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card h-100 property-card shadow-sm">
-            <img src="${property.image}" class="card-img-top" alt="${property.title}">
+            <img src="${property.image}" class="card-img-top" alt="${property.title}" onerror="this.onerror=null; this.src='${FALLBACK_IMAGE}';">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">${property.title}${featuredBadge}</h5>
               <p class="text-muted mb-1">
@@ -237,7 +238,7 @@ $(document).ready(function () {
     if (!property) return;
 
     const detailsHtml = `
-      <img src="${property.image}" alt="${property.title}" class="modal-property-img mb-3">
+      <img src="${property.image}" alt="${property.title}" class="modal-property-img mb-3" onerror="this.onerror=null; this.src='${FALLBACK_IMAGE}';">
       <h4>${property.title}</h4>
       <p class="text-muted mb-2"><i class="bi bi-geo-alt-fill text-danger me-1"></i>${property.location} &bull; ${property.type}</p>
       <p class="fs-4 fw-bold text-primary mb-2">$${property.price.toLocaleString()}</p>
