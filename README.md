@@ -1,6 +1,6 @@
 # PropertyFinder — Property Listing Search & Filter (jQuery + Bootstrap)
 
-A lightweight, responsive property listing web application built with **jQuery**, **AJAX**, and **Bootstrap 5**. Users can search properties in real time, combine multiple filters without page reloads, inspect full property details in a Bootstrap modal, and submit a client-side validated inquiry form.
+A lightweight, responsive property listing web application built with **jQuery**, **AJAX**, and **Bootstrap 5**. Users can search properties in real time, combine multi-criteria filters, sort results, save favorites with `localStorage`, paginate through listings, inspect full details in a Bootstrap modal, and submit a client-side validated inquiry form — all without page reloads.
 
 🔗 **Live Demo:** https://syeddanish-in.github.io/PropertyFinder/
 
@@ -8,21 +8,22 @@ A lightweight, responsive property listing web application built with **jQuery**
 
 ## Features
 
-- **AJAX Data Loading with States**: Fetches listing data asynchronously from a JSON source (`data/properties.json`) using `$.ajax()`, displaying a loading spinner while fetching and an alert banner if loading fails.
-- **Live Keyword Search**: Filters properties instantly on every keystroke by title or location with zero page reloads.
-- **Multi-Criteria Filtering**: Combine filters for **Location**, **Bedrooms** (1, 2, 3, 4+), and **Max Price**, plus a one-click **Reset** button and an empty-state alert when no matches are found.
-- **Responsive Bootstrap 5 Grid**: Adapts automatically across desktop (3 columns), tablet (2 columns), and mobile (1 column) with uniform card heights and hover transitions.
-- **Bootstrap Modal for Property Details**: Uses jQuery event delegation on dynamically rendered cards to populate and open a modal displaying full property specs and description.
-- **Client-Side Form Validation**: Validates the inquiry form (name length, email format, message length) without refreshing the page, showing inline error messages or a confirmation banner.
+- **AJAX Data Loading with Loading, Error & Retry States**: Fetches 12 listings asynchronously from `data/properties.json` via `$.ajax()`, showing a Bootstrap spinner while loading and an error alert with a one-click **Retry** button on failure.
+- **Debounced Live Keyword Search (200ms)**: Searches across property **title**, **location**, **type**, and **description** in real time while debouncing rapid keystrokes (`setTimeout` / `clearTimeout`).
+- **Multi-Criteria Filtering & Dynamic Dropdowns**: Filter by dynamically populated **Location**, **Property Type**, **Bedrooms** (1, 2, 3, 4+), and **Min/Max Price** range (with non-negative validation), plus a live **Showing X of Y** counter and one-click **Reset**.
+- **Sorting & Pagination**: Sort filtered results by **Price (Low → High / High → Low)**, **Area (Largest First)**, or **Featured First**, with client-side **Load More** pagination (6 items per batch).
+- **Favorites Wishlist (`localStorage`)**: Bookmark properties with a heart button on each card and filter by **Show Favorites Only** — saved selections persist across browser refreshes.
+- **Responsive Bootstrap 5 UI & Image Fallback**: Adapts seamlessly across desktop (3 columns), tablet (2 columns), and mobile (1 column) using Bootstrap 5 grid, Bootstrap Icons, hover transitions, and automatic `onerror` placeholder image fallbacks.
+- **Bootstrap Modal & Client-Side Form Validation**: Uses jQuery event delegation on dynamically rendered cards to open a property details modal with property-specific inquiry context, pre-filled message text, form reset when switching properties, and inline validation for name, email, and message.
 
 ---
 
 ## Technologies Used
 
 - **HTML5 & CSS3**
-- **Bootstrap 5** (Responsive Grid, Cards, Navbar, Spinner, Alerts, Modal)
-- **JavaScript & jQuery 3.7** (DOM Manipulation, Event Delegation, Filtering, Form Validation)
-- **AJAX & JSON** (Asynchronous data loading from a mock REST/JSON source)
+- **Bootstrap 5 & Bootstrap Icons** (Responsive Grid, Cards, Navbar, Spinner, Alerts, Modal)
+- **JavaScript & jQuery 3.7** (DOM Manipulation, Event Delegation, Debouncing, Filtering, Sorting, Form Validation)
+- **AJAX, JSON & `localStorage`**
 - **Git & GitHub Pages**
 
 ---
@@ -35,11 +36,25 @@ PropertyFinder/
 ├── css/
 │   └── style.css         # Custom card image sizing, hover animations, and modal image styles
 ├── js/
-│   └── app.js            # jQuery AJAX, dynamic rendering, live filtering, modal & form validation
+│   └── app.js            # jQuery AJAX, dynamic rendering, live filters, sorting, favorites, modal & validation
 ├── data/
-│   └── properties.json   # Mock property listings dataset
+│   └── properties.json   # Mock dataset of 12 property listings
 └── README.md             # Project documentation
 ```
+
+---
+
+## Screenshots
+
+> *Tip: Take screenshots of your live app (`screenshots/home.png` and `screenshots/modal.png`) and uncomment the lines below to display them directly on GitHub!*
+
+<!--
+### Listings & Multi-Criteria Filter View
+![PropertyFinder Listings Grid](screenshots/home.png)
+
+### Property Details Modal & Validated Inquiry Form
+![PropertyFinder Details Modal](screenshots/modal.png)
+-->
 
 ---
 
