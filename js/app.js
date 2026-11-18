@@ -66,11 +66,13 @@ $(document).ready(function () {
     });
   }
 
-  // 3. Filter properties using all active criteria (keyword, location, bedrooms, max price)
+  // 3. Filter properties using all active criteria
   function filterProperties() {
     const keyword = $('#search-input').val().toLowerCase().trim();
     const location = $('#location-filter').val();
+    const type = $('#type-filter').val();
     const bedrooms = $('#bedroom-filter').val();
+    const minPrice = $('#min-price-filter').val();
     const maxPrice = $('#price-filter').val();
 
     const filtered = allProperties.filter(function (property) {
@@ -84,16 +86,29 @@ $(document).ready(function () {
       const matchesLocation =
         location === '' || property.location === location;
 
+      const matchesType =
+        type === '' || property.type === type;
+
       const matchesBedrooms =
         bedrooms === '' ||
         (bedrooms === '4'
           ? property.bedrooms >= 4
           : property.bedrooms === Number(bedrooms));
 
-      const matchesPrice =
+      const matchesMinPrice =
+        minPrice === '' || property.price >= Number(minPrice);
+
+      const matchesMaxPrice =
         maxPrice === '' || property.price <= Number(maxPrice);
 
-      return matchesKeyword && matchesLocation && matchesBedrooms && matchesPrice;
+      return (
+        matchesKeyword &&
+        matchesLocation &&
+        matchesType &&
+        matchesBedrooms &&
+        matchesMinPrice &&
+        matchesMaxPrice
+      );
     });
 
     // Sort the filtered results based on the selected option
@@ -112,14 +127,16 @@ $(document).ready(function () {
   }
 
   // 4. Event listeners for live search & multi-criteria filtering (no page reload)
-  $('#search-input, #price-filter').on('input', filterProperties);
-  $('#location-filter, #bedroom-filter, #sort-filter').on('change', filterProperties);
+  $('#search-input, #min-price-filter, #price-filter').on('input', filterProperties);
+  $('#location-filter, #type-filter, #bedroom-filter, #sort-filter').on('change', filterProperties);
 
   // 5. Reset button clears all inputs and shows all properties again
   $('#reset-btn').on('click', function () {
     $('#search-input').val('');
     $('#location-filter').val('');
+    $('#type-filter').val('');
     $('#bedroom-filter').val('');
+    $('#min-price-filter').val('');
     $('#price-filter').val('');
     $('#sort-filter').val('default');
     displayProperties(allProperties);
