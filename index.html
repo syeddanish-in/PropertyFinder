@@ -88,8 +88,18 @@
           <input type="number" id="price-filter" class="form-control" min="0" placeholder="e.g. 500000">
         </div>
 
-        <!-- 7. Reset Button -->
-        <div class="col-12 col-md-2 ms-md-auto">
+        <!-- 7. Favorites Only Toggle -->
+        <div class="col-12 col-md-4 d-flex align-items-center">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="favorites-only">
+            <label class="form-check-label" for="favorites-only">
+              Show Favorites Only (<span id="fav-count">0</span>)
+            </label>
+          </div>
+        </div>
+
+        <!-- 8. Reset Button -->
+        <div class="col-12 col-md-2">
           <button type="button" id="reset-btn" class="btn btn-outline-secondary w-100">Reset</button>
         </div>
       </div>

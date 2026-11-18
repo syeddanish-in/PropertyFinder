@@ -2,6 +2,13 @@ $(document).ready(function () {
   // Store all fetched properties here so we can filter them later without re-fetching
   let allProperties = [];
 
+  // Load saved favorite property IDs from localStorage
+  let favorites = JSON.parse(localStorage.getItem('favoriteProperties')) || [];
+
+  function updateFavCount() {
+    $('#fav-count').text(favorites.length);
+  }
+
   // 1. Fetch property data from our JSON file using jQuery AJAX
   function fetchProperties() {
     $('#loading-msg').show();
@@ -54,6 +61,7 @@ $(document).ready(function () {
       const featuredBadge = property.featured
         ? '<span class="badge bg-warning text-dark ms-2">Featured</span>'
         : '';
+      const isFav = favorites.includes(property.id);
 
       const cardHtml = `
         <div class="col-12 col-md-6 col-lg-4">
@@ -66,9 +74,14 @@ $(document).ready(function () {
               <p class="card-text small text-secondary">
                 ${property.bedrooms} Beds &bull; ${property.bathrooms} Baths &bull; ${property.area} sq ft
               </p>
-              <button type="button" class="btn btn-outline-primary mt-auto view-details-btn" data-id="${property.id}">
-                View Details
-              </button>
+              <div class="d-flex gap-2 mt-auto">
+                <button type="button" class="btn btn-outline-primary flex-grow-1 view-details-btn" data-id="${property.id}">
+                  View Details
+                </button>
+                <button type="button" class="btn ${isFav ? 'btn-danger' : 'btn-outline-danger'} fav-btn" data-id="${property.id}" title="Save to Favorites">
+                  ${isFav ? '&hearts;' : '&#9825;'}
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -86,6 +99,7 @@ $(document).ready(function () {
     const bedrooms = $('#bedroom-filter').val();
     const minPrice = $('#min-price-filter').val();
     const maxPrice = $('#price-filter').val();
+    const favoritesOnly = $('#favorites-only').is(':checked');
 
     const filtered = allProperties.filter(function (property) {
       const matchesKeyword =
@@ -113,13 +127,17 @@ $(document).ready(function () {
       const matchesMaxPrice =
         maxPrice === '' || property.price <= Number(maxPrice);
 
+      const matchesFavorite =
+        !favoritesOnly || favorites.includes(property.id);
+
       return (
         matchesKeyword &&
         matchesLocation &&
         matchesType &&
         matchesBedrooms &&
         matchesMinPrice &&
-        matchesMaxPrice
+        matchesMaxPrice &&
+        matchesFavorite
       );
     });
 
@@ -140,7 +158,23 @@ $(document).ready(function () {
 
   // 4. Event listeners for live search & multi-criteria filtering (no page reload)
   $('#search-input, #min-price-filter, #price-filter').on('input', filterProperties);
-  $('#location-filter, #type-filter, #bedroom-filter, #sort-filter').on('change', filterProperties);
+  $('#location-filter, #type-filter, #bedroom-filter, #sort-filter, #favorites-only').on('change', filterProperties);
+
+  // Toggle favorite property and persist in localStorage
+  $('#property-list').on('click', '.fav-btn', function () {
+    const propertyId = Number($(this).data('id'));
+    const index = favorites.indexOf(propertyId);
+
+    if (index === -1) {
+      favorites.push(propertyId);
+    } else {
+      favorites.splice(index, 1);
+    }
+
+    localStorage.setItem('favoriteProperties', JSON.stringify(favorites));
+    updateFavCount();
+    filterProperties();
+  });
 
   // 5. Reset button clears all inputs and shows all properties again
   $('#reset-btn').on('click', function () {
@@ -151,6 +185,7 @@ $(document).ready(function () {
     $('#min-price-filter').val('');
     $('#price-filter').val('');
     $('#sort-filter').val('default');
+    $('#favorites-only').prop('checked', false);
     displayProperties(allProperties);
   });
 
@@ -228,5 +263,6 @@ $(document).ready(function () {
   $('#retry-btn').on('click', fetchProperties);
 
   // Run on page load
+  updateFavCount();
   fetchProperties();
 });
