@@ -224,6 +224,9 @@ $(document).ready(function () {
     }
   });
 
+  // Retry button re-fetches properties if AJAX fails
+  $('#retry-btn').on('click', fetchProperties);
+
   // Run on page load
   fetchProperties();
 });

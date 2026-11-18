@@ -121,7 +121,10 @@
       </div>
 
       <div id="error-msg" class="alert alert-danger" style="display: none;">
-        Error: Could not load properties. Please try again.
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+          <span>Error: Could not load properties. Please try again.</span>
+          <button type="button" id="retry-btn" class="btn btn-sm btn-outline-danger">Retry</button>
+        </div>
       </div>
 
       <div id="no-results-msg" class="alert alert-warning" style="display: none;">
