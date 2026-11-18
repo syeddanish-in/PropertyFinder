@@ -156,8 +156,15 @@ $(document).ready(function () {
     displayProperties(filtered);
   }
 
+  // Debounce helper: waits 200ms after typing pauses before filtering
+  let searchTimer;
+  function debouncedFilter() {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(filterProperties, 200);
+  }
+
   // 4. Event listeners for live search & multi-criteria filtering (no page reload)
-  $('#search-input, #min-price-filter, #price-filter').on('input', filterProperties);
+  $('#search-input, #min-price-filter, #price-filter').on('input', debouncedFilter);
   $('#location-filter, #type-filter, #bedroom-filter, #sort-filter, #favorites-only').on('change', filterProperties);
 
   // Toggle favorite property and persist in localStorage
@@ -178,6 +185,7 @@ $(document).ready(function () {
 
   // 5. Reset button clears all inputs and shows all properties again
   $('#reset-btn').on('click', function () {
+    clearTimeout(searchTimer);
     $('#search-input').val('');
     $('#location-filter').val('');
     $('#type-filter').val('');
