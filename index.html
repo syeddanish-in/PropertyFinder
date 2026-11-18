@@ -64,6 +64,53 @@
     </div>
   </section>
 
+  <!-- Property Listings Section -->
+  <section id="properties">
+    <h3>Available Properties</h3>
+
+    <!-- Status Messages (controlled by jQuery later) -->
+    <p id="loading-msg" style="display: none;">Loading properties...</p>
+    <p id="error-msg" style="display: none;">Error: Could not load properties.</p>
+    <p id="no-results-msg" style="display: none;">No properties match your filters.</p>
+
+    <!-- Empty Container: jQuery will inject property cards here -->
+    <div id="property-list"></div>
+  </section>
+
+  <!-- Property Details & Inquiry Section (will become a Bootstrap Modal later) -->
+  <section id="contact">
+    <h3>Property Details & Inquiry</h3>
+
+    <!-- Selected Property Info (filled by jQuery when user clicks a property) -->
+    <div id="modal-details">
+      <p>Select a property to view full details.</p>
+    </div>
+
+    <!-- Client-Side Validated Inquiry Form -->
+    <form id="inquiry-form" novalidate>
+      <div>
+        <label for="user-name">Your Name:</label>
+        <input type="text" id="user-name" placeholder="Enter your name">
+        <span id="name-error" style="color: red;"></span>
+      </div>
+
+      <div>
+        <label for="user-email">Email Address:</label>
+        <input type="email" id="user-email" placeholder="Enter your email">
+        <span id="email-error" style="color: red;"></span>
+      </div>
+
+      <div>
+        <label for="user-message">Message:</label>
+        <textarea id="user-message" rows="3" placeholder="I am interested in this property..."></textarea>
+        <span id="message-error" style="color: red;"></span>
+      </div>
+
+      <button type="submit">Send Inquiry</button>
+      <p id="form-success" style="color: green; display: none;">Thank you! Your inquiry has been sent.</p>
+    </form>
+  </section>
+
 </body>
 
 </html>
