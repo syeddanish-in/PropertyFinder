@@ -96,12 +96,24 @@ $(document).ready(function () {
       return matchesKeyword && matchesLocation && matchesBedrooms && matchesPrice;
     });
 
+    // Sort the filtered results based on the selected option
+    const sortBy = $('#sort-filter').val();
+    if (sortBy === 'price-asc') {
+      filtered.sort(function (a, b) { return a.price - b.price; });
+    } else if (sortBy === 'price-desc') {
+      filtered.sort(function (a, b) { return b.price - a.price; });
+    } else if (sortBy === 'area-desc') {
+      filtered.sort(function (a, b) { return b.area - a.area; });
+    } else if (sortBy === 'featured') {
+      filtered.sort(function (a, b) { return Number(b.featured) - Number(a.featured); });
+    }
+
     displayProperties(filtered);
   }
 
   // 4. Event listeners for live search & multi-criteria filtering (no page reload)
   $('#search-input, #price-filter').on('input', filterProperties);
-  $('#location-filter, #bedroom-filter').on('change', filterProperties);
+  $('#location-filter, #bedroom-filter, #sort-filter').on('change', filterProperties);
 
   // 5. Reset button clears all inputs and shows all properties again
   $('#reset-btn').on('click', function () {
@@ -109,6 +121,7 @@ $(document).ready(function () {
     $('#location-filter').val('');
     $('#bedroom-filter').val('');
     $('#price-filter').val('');
+    $('#sort-filter').val('default');
     displayProperties(allProperties);
   });
 
