@@ -14,12 +14,24 @@ $(document).ready(function () {
       success: function (data) {
         $('#loading-msg').hide();
         allProperties = data;
+        populateLocationFilter(allProperties);
         displayProperties(allProperties);
       },
       error: function () {
         $('#loading-msg').hide();
         $('#error-msg').show();
       }
+    });
+  }
+
+  // Populate the Location dropdown dynamically from fetched JSON data
+  function populateLocationFilter(properties) {
+    const $locationSelect = $('#location-filter');
+    $locationSelect.find('option:not(:first)').remove();
+
+    const uniqueLocations = [...new Set(properties.map(function (p) { return p.location; }))].sort();
+    uniqueLocations.forEach(function (loc) {
+      $locationSelect.append(`<option value="${loc}">${loc}</option>`);
     });
   }
 
