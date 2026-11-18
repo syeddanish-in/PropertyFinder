@@ -36,14 +36,26 @@ $(document).ready(function () {
     $('#no-results-msg').hide();
 
     properties.forEach(function (property) {
+      const featuredBadge = property.featured
+        ? '<span class="badge bg-warning text-dark ms-2">Featured</span>'
+        : '';
+
       const cardHtml = `
-        <div class="property-card" style="border: 1px solid #ccc; padding: 12px; margin-bottom: 12px;">
-          <img src="${property.image}" alt="${property.title}" width="260">
-          <h4>${property.title}</h4>
-          <p><strong>Location:</strong> ${property.location}</p>
-          <p><strong>Price:</strong> $${property.price.toLocaleString()}</p>
-          <p><strong>Bedrooms:</strong> ${property.bedrooms} | <strong>Bathrooms:</strong> ${property.bathrooms}</p>
-          <button type="button" class="view-details-btn" data-id="${property.id}">View Details</button>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100 property-card shadow-sm">
+            <img src="${property.image}" class="card-img-top" alt="${property.title}">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${property.title}${featuredBadge}</h5>
+              <p class="text-muted mb-1">${property.location} &bull; ${property.type}</p>
+              <p class="fs-5 fw-bold text-primary mb-2">$${property.price.toLocaleString()}</p>
+              <p class="card-text small text-secondary">
+                ${property.bedrooms} Beds &bull; ${property.bathrooms} Baths &bull; ${property.area} sq ft
+              </p>
+              <button type="button" class="btn btn-outline-primary mt-auto view-details-btn" data-id="${property.id}">
+                View Details
+              </button>
+            </div>
+          </div>
         </div>
       `;
 
@@ -105,19 +117,25 @@ $(document).ready(function () {
     if (!property) return;
 
     const detailsHtml = `
-      <img src="${property.image}" alt="${property.title}" width="320">
+      <img src="${property.image}" alt="${property.title}" class="modal-property-img mb-3">
       <h4>${property.title}</h4>
-      <p><strong>Type:</strong> ${property.type} | <strong>Location:</strong> ${property.location}</p>
-      <p><strong>Price:</strong> $${property.price.toLocaleString()}</p>
-      <p><strong>Bedrooms:</strong> ${property.bedrooms} | <strong>Bathrooms:</strong> ${property.bathrooms} | <strong>Area:</strong> ${property.area} sq ft</p>
-      <p>${property.description}</p>
+      <p class="text-muted mb-2">${property.type} &bull; ${property.location}</p>
+      <p class="fs-4 fw-bold text-primary mb-2">$${property.price.toLocaleString()}</p>
+      <p class="mb-2">
+        <strong>Bedrooms:</strong> ${property.bedrooms} |
+        <strong>Bathrooms:</strong> ${property.bathrooms} |
+        <strong>Area:</strong> ${property.area} sq ft
+      </p>
+      <p class="mb-0">${property.description}</p>
     `;
 
     $('#modal-details').html(detailsHtml);
+    $('#name-error, #email-error, #message-error').text('');
     $('#form-success').hide();
 
-    // Scroll down to the details section (in the next step, this opens a Bootstrap Modal)
-    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    // Open the Bootstrap Modal
+    const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('propertyModal'));
+    modal.show();
   });
 
   // 7. Client-side Form Validation for the Inquiry Form
