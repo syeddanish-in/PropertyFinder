@@ -74,7 +74,9 @@ $(document).ready(function () {
       const matchesKeyword =
         keyword === '' ||
         property.title.toLowerCase().includes(keyword) ||
-        property.location.toLowerCase().includes(keyword);
+        property.location.toLowerCase().includes(keyword) ||
+        property.type.toLowerCase().includes(keyword) ||
+        property.description.toLowerCase().includes(keyword);
 
       const matchesLocation =
         location === '' || property.location === location;
