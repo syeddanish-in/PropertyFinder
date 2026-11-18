@@ -28,6 +28,9 @@ $(document).ready(function () {
     const $list = $('#property-list');
     $list.empty(); // Clear previous items before rendering
 
+    // Update live results counter
+    $('#results-count').text(`Showing ${properties.length} of ${allProperties.length} properties`);
+
     if (properties.length === 0) {
       $('#no-results-msg').show();
       return;
