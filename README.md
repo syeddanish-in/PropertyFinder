@@ -2,7 +2,7 @@
 
 A lightweight, responsive property listing web application built with **jQuery**, **AJAX**, and **Bootstrap 5**. Users can search properties in real time, combine multi-criteria filters, sort results, save favorites with `localStorage`, paginate through listings, inspect full details in a Bootstrap modal, and submit a client-side validated inquiry form — all without page reloads.
 
-🔗 **Live Demo:** https://syeddanish-in.github.io/PropertyFinder/
+🔗 **Live Demo:** https://propertyfinder-listing.netlify.app
 
 ---
 
@@ -24,7 +24,7 @@ A lightweight, responsive property listing web application built with **jQuery**
 - **Bootstrap 5 & Bootstrap Icons** (Responsive Grid, Cards, Navbar, Spinner, Alerts, Modal)
 - **JavaScript & jQuery 3.7** (DOM Manipulation, Event Delegation, Debouncing, Filtering, Sorting, Form Validation)
 - **AJAX, JSON & `localStorage`**
-- **Git & GitHub Pages**
+- **Git, GitHub & Netlify**
 
 ---
 
