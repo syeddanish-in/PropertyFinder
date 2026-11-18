@@ -76,5 +76,83 @@
     "featured": false,
     "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
     "description": "Elegant brick townhouse with private courtyard patio, hardwood floors, and updated appliances."
+  },
+  {
+    "id": 7,
+    "title": "Hillside Modern Residence",
+    "location": "Hillside",
+    "price": 540000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "area": 2450,
+    "type": "House",
+    "featured": true,
+    "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80",
+    "description": "Contemporary hillside home with valley views, vaulted ceilings, and an expansive timber deck."
+  },
+  {
+    "id": 8,
+    "title": "Midtown High-Rise Apartment",
+    "location": "Midtown",
+    "price": 275000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "area": 980,
+    "type": "Apartment",
+    "featured": false,
+    "image": "https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&w=800&q=80",
+    "description": "Centrally located apartment walking distance from business hubs, cafes, and public transit."
+  },
+  {
+    "id": 9,
+    "title": "Sunlit Midtown Loft Condo",
+    "location": "Midtown",
+    "price": 345000,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "area": 1250,
+    "type": "Condo",
+    "featured": false,
+    "image": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
+    "description": "Open-plan corner loft with oversized windows, exposed beams, and modern chef kitchen."
+  },
+  {
+    "id": 10,
+    "title": "Hillside Glass Pool Villa",
+    "location": "Hillside",
+    "price": 960000,
+    "bedrooms": 5,
+    "bathrooms": 4,
+    "area": 4100,
+    "type": "Villa",
+    "featured": true,
+    "image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+    "description": "Architectural glass villa featuring a heated lap pool, home theater, and lush private gardens."
+  },
+  {
+    "id": 11,
+    "title": "Beachfront Sunset Townhouse",
+    "location": "Beachfront",
+    "price": 510000,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "area": 1950,
+    "type": "Townhouse",
+    "featured": false,
+    "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+    "description": "Ocean-breeze townhouse steps from the boardwalk with rooftop lounge and outdoor shower."
+  },
+  {
+    "id": 12,
+    "title": "Quiet Suburban Estate House",
+    "location": "Suburbs",
+    "price": 465000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "area": 2800,
+    "type": "House",
+    "featured": false,
+    "image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80",
+    "description": "Move-in ready cul-de-sac family estate near top schools with study room and double garage."
   }
 ]

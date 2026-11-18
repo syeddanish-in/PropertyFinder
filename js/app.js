@@ -1,6 +1,9 @@
 $(document).ready(function () {
   // Store all fetched properties here so we can filter them later without re-fetching
   let allProperties = [];
+  let currentFiltered = [];
+  const PAGE_SIZE = 6;
+  let visibleCount = PAGE_SIZE;
 
   // Load saved favorite property IDs from localStorage
   let favorites = JSON.parse(localStorage.getItem('favoriteProperties')) || [];
@@ -44,20 +47,24 @@ $(document).ready(function () {
 
   // 2. Render properties dynamically into the #property-list container
   function displayProperties(properties) {
+    currentFiltered = properties;
     const $list = $('#property-list');
     $list.empty(); // Clear previous items before rendering
 
+    const toShow = properties.slice(0, visibleCount);
+
     // Update live results counter
-    $('#results-count').text(`Showing ${properties.length} of ${allProperties.length} properties`);
+    $('#results-count').text(`Showing ${toShow.length} of ${properties.length} properties`);
 
     if (properties.length === 0) {
       $('#no-results-msg').show();
+      $('#load-more-btn').hide();
       return;
     }
 
     $('#no-results-msg').hide();
 
-    properties.forEach(function (property) {
+    toShow.forEach(function (property) {
       const featuredBadge = property.featured
         ? '<span class="badge bg-warning text-dark ms-2">Featured</span>'
         : '';
@@ -89,10 +96,20 @@ $(document).ready(function () {
 
       $list.append(cardHtml);
     });
+
+    // Show or hide the Load More button
+    if (visibleCount < properties.length) {
+      $('#load-more-btn').show();
+    } else {
+      $('#load-more-btn').hide();
+    }
   }
 
   // 3. Filter properties using all active criteria
-  function filterProperties() {
+  function filterProperties(resetPage) {
+    if (resetPage !== false) {
+      visibleCount = PAGE_SIZE;
+    }
     const keyword = $('#search-input').val().toLowerCase().trim();
     const location = $('#location-filter').val();
     const type = $('#type-filter').val();
@@ -180,12 +197,19 @@ $(document).ready(function () {
 
     localStorage.setItem('favoriteProperties', JSON.stringify(favorites));
     updateFavCount();
-    filterProperties();
+    filterProperties(false);
+  });
+
+  // Load More button shows the next batch of properties
+  $('#load-more-btn').on('click', function () {
+    visibleCount += PAGE_SIZE;
+    displayProperties(currentFiltered);
   });
 
   // 5. Reset button clears all inputs and shows all properties again
   $('#reset-btn').on('click', function () {
     clearTimeout(searchTimer);
+    visibleCount = PAGE_SIZE;
     $('#search-input').val('');
     $('#location-filter').val('');
     $('#type-filter').val('');
