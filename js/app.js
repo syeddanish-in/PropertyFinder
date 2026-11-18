@@ -222,6 +222,8 @@ $(document).ready(function () {
   });
 
   // 6. View Details button (Event Delegation for dynamically created buttons)
+  let selectedPropertyTitle = '';
+
   $('#property-list').on('click', '.view-details-btn', function () {
     const propertyId = Number($(this).data('id'));
     const property = allProperties.find(function (item) {
@@ -243,8 +245,12 @@ $(document).ready(function () {
       <p class="mb-0">${property.description}</p>
     `;
 
+    selectedPropertyTitle = property.title;
+
     $('#modal-details').html(detailsHtml);
     $('#inquiry-form')[0].reset();
+    $('#inquiry-property-context').text(`Inquiring about: ${property.title}`);
+    $('#user-message').val(`Hi, I am interested in "${property.title}". Could you share more details?`);
     $('#name-error, #email-error, #message-error').text('');
     $('#form-success').hide();
 
@@ -286,7 +292,9 @@ $(document).ready(function () {
     }
 
     if (isValid) {
-      $('#form-success').show();
+      $('#form-success')
+        .text(`Thank you! Your inquiry about "${selectedPropertyTitle}" has been sent.`)
+        .show();
       this.reset(); // Clear form fields after successful submit
     }
   });
